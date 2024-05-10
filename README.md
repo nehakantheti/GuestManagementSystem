@@ -6,6 +6,7 @@ The college database managed using MySQL is connected to the frontend using node
 Guests here are classified into two types : 
 1. Related to student - provides student details and verification details
 2. Visitor (Not related to anyone in the campus) - provides some identification number for verification details
+
 Guests will be able to choose the type of room for them through the website and submit it. After submitting it, the college admin will be approving it and send a confirmation mail to the user through their mail id provided in the website
 After the approval, they will be allotted a room in the college for specified time in the college.
 After the stay they can either pay through the portal or can directly pay to the college offline.
