@@ -2,9 +2,6 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    background-image:url('/assets/login_bg.jpg');
-    background-size: cover;
-    background-repeat:no-repeat;
 }
 
 
@@ -21,6 +18,6 @@ form{
 }
 
 #login.title> span{
-    font-size:.8em;
+    font-size:2em;
 }
 
