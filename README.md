@@ -2,6 +2,7 @@
 This is to provide an interface for the visitors/parents of a college by collecting their details and integrating with the college database and maintaining the records of them in the college database
 Guests to the college will be interacting with a front-end website designed using HTML,CSS and JavaScript.
 The college database managed using MySQL is connected to the frontend using node.js
+
 Guests here are classified into two types : 
 1. Related to student - provides student details and verification details
 2. Visitor (Not related to anyone in the campus) - provides some identification number for verification details
