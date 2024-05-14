@@ -1,5 +1,4 @@
-# GuestManagementSystem
-# DBMSProject
+# GuestManagementSystem - DBMS Project
 This is to provide an interface for the visitors/parents of a college by collecting their details and integrating with the college database and maintaining the records of them in the college database
 Guests to the college will be interacting with a front-end website designed using HTML,CSS and JavaScript.
 The college database managed using MySQL is connected to the frontend using node.js
