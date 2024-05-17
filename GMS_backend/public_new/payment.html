@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            margin: 0;
+            background-color: #dedbdb;
+        }
+        .container {
+            max-width: 600px; 
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h1>Payment Form</h1>
+            </div>
+            <form class="needs-validation" action="/payment" method = "POST" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">Guest First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Guest Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid username is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="roomId" class="form-label">Room ID</label>
+                        <input type="text" class="form-control" id="roomId" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid Room ID is required.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-lg" type="button" id="viewpaymentButton">View Payment Details</button>
+                <hr class="my-4">
+                <div id="paymentModes">
+                    <h4 class="mb-3">Payment Modes</h4>
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input id="card" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="card">Card</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="netBanking" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="netBanking">Net Banking</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="upiTransaction" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="upiTransaction">UPI Transaction</label>
+                        </div>
+                        <div class="form-check">
+                            <input id="cash" name="paymentMethod" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="cash">Cash</label>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div id="cardSection" style="display: none;">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <h6 class="mb-3">Card</h6>
+                            <label for="cc-name" class="form-label">Name on Card</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <small class="text-body">Full name as displayed on card</small>
+                            <div class="invalid-feedback">
+                                Name on card is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cc-number" class="form-label">Card Number</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Credit card number is required.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="MM/YY" required>
+                            <div class="invalid-feedback">
+                                Expiration date required.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                            <div class="invalid-feedback">
+                                CVV is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="netBankingSection" style="display: none;">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <h6 class="mb-3">Net Banking</h6>
+                            <label for="netbanking-name" class="form-label">Name on Account</label>
+                            <input type="text" class="form-control" id="netbanking-name" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Name on account is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="account-number" class="form-label">Account Number</label>
+                            <input type="text" class="form-control" id="account-number" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Account number is required.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ifsc-number" class="form-label">IFSC Number</label>
+                            <input type="text" class="form-control" id="ifsc-number" placeholder="" required>
+                            <div class="invalid-feedback">
+                                IFSC number required.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="text" class="form-control" id="amount" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Amount required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="upiTransactionSection" style="display: none;">
+                  <div class="row g-3">
+                      <div class="col-md-6">
+                          <h6 class="mb-3">UPI Transaction</h6>
+                          <div class="container">
+                              <h6 class="mb-3">UPI</h6>
+                              <div class="section">
+                                  <div id="my-qr-reader">
+                                      <!-- QR scanner will be rendered here -->
+                                  </div>
+                              </div>
+                          </div>
+                          <script src="https://unpkg.com/html5-qrcode"></script>
+                          <script>
+                              function domReady(fn) {
+                                  if (
+                                      document.readyState === "complete" ||
+                                      document.readyState === "interactive"
+                                  ) {
+                                      setTimeout(fn, 1000);
+                                  } else {
+                                      document.addEventListener("DOMContentLoaded", fn);
+                                  }
+                              }
+                      
+                              domReady(function () {
+                                  function onScanSuccess(decodeText, decodeResult) {
+                                      alert("Your QR is : " + decodeText);
+                                  }
+                      
+                                  let htmlscanner = new Html5QrcodeScanner(
+                                      "my-qr-reader", {
+                                          fps: 10,
+                                          qrbos: 250
+                                      }
+                                  );
+                                  htmlscanner.render(onScanSuccess);
+                              });
+                          </script>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="upiId" class="form-label">UPI number</label>
+                          <input type="text" class="form-control" id="upiId" placeholder="" required>
+                          <div class="invalid-feedback">
+                              A valid and proper UPI number is required.
+                          </div>
+                      </div>
+                  </div>
+              </div>              
+                <div id="cashSection" style="display: none;">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <h6 class="mb-3">Cash</h6>
+                            <label for="cashAmount" class="form-label">Amount (in cash)</label>
+                            <input type="text" class="form-control" id="cashAmount" placeholder="" required>
+                            <div class="invalid-feedback">
+                                Amount in cash is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="my-3 text-center">
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <a href="home.html" id="downloadButton" class="btn btn-primary btn-lg">Download Receipt</a>
+                      </div>
+                      <div class="col-sm-6">
+                          <a href="/prev-receipts" id="receiptsButton" class="btn btn-primary btn-lg">Prev Receipt</a>
+                      </div>
+                  </div>
+              </div>              
+            </form>
+        </main>
+        <footer class="my-5 text-body-secondary text-center text-small">
+            <p class="mb-1">IIITDM Kancheepuram</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

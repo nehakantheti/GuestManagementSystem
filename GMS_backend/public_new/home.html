@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #dedbdb;; 
+        color: #333333; 
+        padding-top: 60px;
+      }
+      .header-logo {
+        width: 50px;
+      }
+      .site-name {
+        color: #0056b3;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .site-name-uppercase {
+        text-transform: uppercase;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        color: #0056b3; 
+        font-weight: bold; 
+      }
+      .about-section {
+        margin-top: 30px;
+      }
+      .button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #ffffff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #0056b3;
+      }
+
+      .button2 {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 5px;
+        background-color: #f7f9fb;
+        color: #007bff;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .button2:hover {
+        background-color: #0056b3;
+      }
+
+      .text1 {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.14),
+            rgba(0, 0, 0, 0.14)
+          ),
+          url("image4.jpg");
+        height: 50%;
+        border-radius: 8px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        padding-top: 35px;
+      }
+      .text2 {
+        color: #0e46a3;
+      }
+
+      .textonimage {
+        height: 600px;
+      }
+    </style>    
+      
+  </head>
+  <body>
+    <header class="py-3 bg-light fixed-top">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a
+          href="/"
+          class="d-flex align-items-center link-body-emphasis text-decoration-none"
+        >
+          <img src="logo.png" alt="Logo" class="header-logo me-2" />
+          <span class="fs-4 site-name site-name-uppercase"
+            >IIITDM Kancheepuram</span
+          >
+        </a>
+
+        <nav>
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="home.html" id="homeButton" class="button2">Home</a></li>
+            <li class="nav-item"><a href="login.html" id="loginButton" class="button2">Login</a></li>
+          </ul>
+        </nav>        
+      </div>
+    </header>
+
+    <main class="container mt-4">
+      <div class="text-center text1">
+        <div class="textonimage">
+          <h1 class="mt-4 text2">Welcome to IIITDM Kancheepuram</h1>
+          <p class="lead">
+            Simplify your accommodation bookings and fee management with our
+            user-friendly system.
+          </p>
+        </div>
+      </div>
+
+      <div id="about" class="about-section mt-5">
+        <h2>About Us</h2>
+        <p>
+          This is to provide an interface for the visitors/parents of a college
+          by collecting their details and integrating with the college database
+          and maintaining the records of them in the college database Guests to
+          the college will be interacting with a front-end website designed
+          using HTML,CSS and JavaScript. The college database managed using
+          MySQL is connected to the frontend using node.js
+          <br />
+          Guests here are classified into two types :
+          <br />
+          1.Related to student - provides student details and verification
+          details <br />
+          2.Visitor (Not related to anyone in the campus) - provides some
+          identification number for verification details <br />
+          Guests will be able to choose the type of room for them through the
+          website and submit it. After submitting it, the college admin will be
+          approving it and send a confirmation mail to the user through their
+          mail id provided in the website After the approval, they will be
+          allotted a room in the college for specified time in the college.
+          After the stay they can either pay through the portal or can directly
+          pay to the college offline. All the details about the stay, guests and
+          their related student is maintained in the database along with the
+          receipts of their payments.
+        </p>
+        <div class="button-container">
+          <a href="login.html" id="makereservationButton" class="button">Make a Reservation</a>
+        </div>
+
+        <div class="button-container">
+          <p>
+            To explore further, visit our
+            <a href="https://www.iiitdm.ac.in/">college website</a> for
+            additional details and information.
+          </p>
+        </div>      
+      </div>
+    </main>
+
+    <footer class="py-4 bg-light">
+      <div class="container text-center">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2">Home</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2">Reservation</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2">Payment</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2">Receipts</a>
+          </li>
+        </ul>
+        <p class="text-body-secondary mb-0">&copy; 2024 IIITDM Kancheepuram</p>
+      </div>
+    </footer>  
+
+  </body>
+</html>

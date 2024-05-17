@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #dedbdb;
+            flex-wrap: wrap;
+        }
+        .rectangle-box {
+            width: calc(25% - 40px);
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+        .rectangle-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .rectangle-box h2 {
+            color: #333333;
+        }
+        .rectangle-box p {
+            color: #666666;
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle-box">
+        <h2>J102</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 102 <br> Category: 2 <br> Features: Non-AC with attached Bathroom <br> Price : 500/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'J102')">
+            <input type="hidden" name="room" value="J102">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>J101</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 101 <br> Category: 1 <br> Features: AC with attached Bathroom <br> Price : 250/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'J101')">
+            <input type="hidden" name="room" value="J101">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>J103</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 103 <br> Category: 3 <br> Features: AC with common Bathroom <br> Price : 750/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'J103')">
+            <input type="hidden" name="room" value="J103">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>J104</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 104 <br> Category: 4 <br> Features: Non-AC with common Bathroom <br> Price : 1000/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'J104')">
+            <input type="hidden" name="room" value="J104">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <br>
+    <div class="rectangle-box">
+        <h2>A102</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 102 <br> Category: 2 <br> Features: Non-AC with attached Bathroom <br> Price : 500/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'A102')">
+            <input type="hidden" name="room" value="A102">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>A101</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 101 <br> Category: 1 <br> Features: AC with attached Bathroom <br> Price : 250/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'A101')">
+            <input type="hidden" name="room" value="A101">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>A103</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 103 <br> Category: 3 <br> Features: AC with common Bathroom <br> Price : 750/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'A103')">
+            <input type="hidden" name="room" value="A103">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="rectangle-box">
+        <h2>A104</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 104 <br> Category: 4 <br> Features: Non-AC with common Bathroom <br> Price : 1000/-</p>
+        <form action="/book-hostel-room" method="POST" onsubmit="bookRoom(event, 'A104')">
+            <input type="hidden" name="room" value="A104">
+            <button type="submit" class="button">Book</button>
+        </form>
+    </div>
+    <div class="message-box" id="messageBox">Room booked, please proceed to payment and finish it successfully!</div>
+
+    <script>
+        function bookRoom(event, room) {
+            event.preventDefault();
+            // Show the message box
+            const messageBox = document.getElementById('messageBox');
+            messageBox.style.display = 'block';
+
+            // Hide the message box after 2 seconds and redirect to the payment page
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+                // Submit the form programmatically
+                window.location.href = `/payment.html?room=${room}`;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

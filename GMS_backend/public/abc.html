@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 10em;
+            max-width: 600px; /* Adjusted width */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="py-5 text-center">
+                <h2>Guest information form</h2>
+            </div>
+            <form id="guestForm" class="needs-validation" novalidate="">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="ABC" required="">
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="DEF" required="">
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                    <!-- Additional fields -->
+                    <div class="col-12">
+                        <label for="Aadhar" class="form-label">Aadhar</label>
+                        <input type="text" class="form-control" id="Aadhar" name="Aadhar" placeholder="xxxx-xxxx-xxxx" required="" value="123412341234">
+                        <div class="invalid-feedback">
+                            Your Aadhar is required.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" required="" value="cs22b1001">
+                        <div class="invalid-feedback">
+                            Your username is required.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="Relation" class="form-label">Relation</label>
+                        <input type="text" class="form-control" id="Relation" name="Relation" placeholder="Mother, Father, etc." required="" value="Sister">
+                        <div class="invalid-feedback">
+                            Your relation is required.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" value="abc@gmail.com">
+                    </div>
+                    <div class="col-12">
+                        <label for="Phn no" class="form-label">Phone number</label>
+                        <input type="text" class="form-control" id="Phn no" name="Phn no" placeholder="xxxxxxxxxx" required="" value="1234567890">
+                        <div class="invalid-feedback">
+                            Your phone number is required.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required="" value="1234 Mainst">
+                        <div class="invalid-feedback">
+                            Your address is required.
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="country" class="form-label">Country</label>
+                        <select class="form-select" id="country" name="country" required="">
+                            <option value="">India</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a country.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="state" class="form-label">State</label>
+                        <select class="form-select" id="state" name="state" required="">
+                            <option value="">Choose...</option>
+                            <option>Tamil Nadu</option>
+                            <option>Telangana</option>
+                            <option>Karnataka</option>
+                            <option>Andhra Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Kerala</option>
+                            <option>Rajasthan</option>
+                            <option>Odisha</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a state.
+                        </div>
+                    </div>
+                    <div class="form-check col-md-12" >
+                        <input type="checkbox" class="form-check-input" id="save-info">
+                        <label class="form-check-label" for="save-info">Save this information for next time</label>
+                    </div>
+                    <button type="submit" id = "submit">Submit details</button>
+                </div>
+            </form>
+        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+            <p class="mb-1">IIITDM Kancheepuram</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
+    </div>
+<script>
+    // const btn = document.querySelector('#submit')
+    const form1 = document.getElementById('guestForm')
+
+    form1.addEventListener('submit', (e)=>{
+        // Prevent default form submission
+        e.preventDefault();
+
+
+        // Collect form data
+        const formData = new FormData(form1);
+        console.log(formData.keys())
+
+        // Send form data using fetch or XMLHttpRequest
+        fetch('/submit-guest-form', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log response from server
+            // Optionally, redirect or display a success message
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items at the top */
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+        }
+        .rectangle-box {
+            width: calc(25% - 40px); /* 25% width minus padding */
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px; /* Margin for spacing between boxes */
+            transition: transform 0.3s ease; /* Added transition for pop-out effect */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        .rectangle-box:hover {
+            transform: translateY(-5px); /* Pop-out effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+        }
+        .rectangle-box h2 {
+            color: #333333;
+        }
+        .rectangle-box p {
+            color: #666666;
+            margin-bottom: 10px; /* Added margin below each paragraph */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle-box">
+        <h2>J102</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 102 <br> Category: 2 <br> Features: Non-AC with attached Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>J101</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 101 <br> Category: 1 <br> Features: AC with attached Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>J103</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 103 <br> Category: 3 <br> Features: AC with common Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>J104</h2>
+        <p>Hostel Name: Jasmine <br> Room No: 104 <br> Category: 4 <br> Features: Non-AC with common Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <br>
+
+    <div class="rectangle-box">
+        <h2>A102</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 102 <br> Category: 2 <br> Features: Non-AC with attached Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>A101</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 101 <br> Category: 1 <br> Features: AC with attached Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>A103</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 103 <br> Category: 3 <br> Features: AC with common Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+    <div class="rectangle-box">
+        <h2>A104</h2>
+        <p>Hostel Name: Ashwatha <br> Room No: 104 <br> Category: 4 <br> Features: Non-AC with common Bathroom</p>
+        <a href="#" class="button">Book</a>
+    </div>
+
+</body>
+</html>

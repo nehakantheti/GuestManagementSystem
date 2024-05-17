@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission with JavaScript</title>
+    <script>
+        // JavaScript function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Get form data
+            const formData = new FormData(event.target);
+
+            // Convert form data to an object
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            // Log the form data object to the console (or send it to a server)
+            console.log('Form Data:', formObject);
+
+            // Optionally, display a message to the user
+            document.getElementById('result').innerText = 'Form submitted successfully!';
+        }
+
+        // Attach the form submit event listener when the window loads
+        window.onload = function() {
+            const form = document.getElementById('myForm');
+            form.addEventListener('submit', handleFormSubmit);
+        };
+    </script>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="result"></p>
+</body>
+</html>
