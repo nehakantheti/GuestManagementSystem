@@ -1,0 +1,163 @@
+CREATE TABLE USER (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    password VARCHAR(255),
+    role VARCHAR(50)
+);
+
+CREATE TABLE PERMISSIONS (
+    role VARCHAR(50),
+    can_update BOOLEAN,
+    can_insert BOOLEAN,
+    can_delete BOOLEAN,
+    can_view BOOLEAN,
+    PRIMARY KEY (role),
+    FOREIGN KEY (role) REFERENCES USER(role)
+);
+
+CREATE TABLE ADMIN (
+    staff_id INT AUTO_INCREMENT PRIMARY KEY,
+    password VARCHAR(255),
+    role VARCHAR(50),
+    FOREIGN KEY (role) REFERENCES USER(role)
+);
+
+CREATE TABLE STUDENT (
+    roll_no INT AUTO_INCREMENT PRIMARY KEY,
+    sname VARCHAR(100),
+    email_id VARCHAR(100),
+    dob DATE,
+    age INT,
+    yr_of_study INT,
+    st_phno VARCHAR(15),
+    password VARCHAR(255),
+    role VARCHAR(50),
+    FOREIGN KEY (role) REFERENCES USER(role)
+);
+
+CREATE TABLE ROOM (
+    room_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_id INT,
+    roll_no INT,
+    check_in DATE,
+    check_out DATE,
+    price DECIMAL(10,2),
+    no_of_days INT,
+    availability_status BOOLEAN,
+    booking_status BOOLEAN,
+    FOREIGN KEY (roll_no) REFERENCES STUDENT(roll_no)
+);
+
+CREATE TABLE PAYMENT (
+    room_id INT,
+    roll_no INT,
+    mode VARCHAR(50),
+    due DECIMAL(10,2),
+    view_receipt VARCHAR(255),
+    FOREIGN KEY (room_id) REFERENCES ROOM(room_id),
+    FOREIGN KEY (roll_no) REFERENCES STUDENT(roll_no)
+);
+
+CREATE TABLE GUEST (
+    aadhar VARCHAR(12) PRIMARY KEY,
+    roll_no INT,
+    gname VARCHAR(100),
+    relation VARCHAR(50),
+    no_of_ppl INT,
+    add VARCHAR(255),
+    g_phno VARCHAR(15),
+    FOREIGN KEY (roll_no) REFERENCES STUDENT(roll_no)
+);
+
+CREATE TABLE PREV_RECEIPTS (
+    roll_no INT,
+    check_in DATE,
+    check_out DATE,
+    receipt VARCHAR(255),
+    FOREIGN KEY (roll_no) REFERENCES STUDENT(roll_no)
+);
+-- Inserting into USER table
+INSERT INTO USER (user_id, password, role) VALUES (1, 'pass123', 'admin');
+INSERT INTO USER (user_id, password, role) VALUES (2, 'pass456', 'student');
+
+-- Inserting into PERMISSIONS table
+INSERT INTO PERMISSIONS (role, can_update, can_insert, can_delete, can_view) VALUES ('admin', TRUE, TRUE, TRUE, TRUE);
+INSERT INTO PERMISSIONS (role, can_update, can_insert, can_delete, can_view) VALUES ('student', FALSE, TRUE, FALSE, TRUE);
+
+-- Inserting into ADMIN table
+INSERT INTO ADMIN (staff_id, password, role) VALUES (1, 'adminpass', 'admin');
+
+-- Inserting into STUDENT table
+INSERT INTO STUDENT (roll_no, sname, email_id, dob, age, yr_of_study, st_phno, password, role) VALUES (1, 'John Doe', 'john@example.com', '2000-01-01', 24, 3, '1234567890', 'studentpass', 'student');
+
+-- Inserting into ROOM table
+INSERT INTO ROOM (room_id, category_id, roll_no, check_in, check_out, price, no_of_days, availability_status, booking_status) VALUES (1, 1, 1, '2024-05-10', '2024-05-20', 1000.00, 10, TRUE, TRUE);
+
+-- Inserting into PAYMENT table
+INSERT INTO PAYMENT (room_id, roll_no, mode, due, view_receipt) VALUES (1, 1, 'Credit Card', 200.00, 'receipt123.pdf');
+
+-- Inserting into GUEST table
+--INSERT INTO GUEST (aadhar, roll_no, gname, relation, no_of_ppl, add, g_phno) VALUES ('123456789012', 1, 'Jane Doe', 'sister', 1, '123 Street, -----City', '0987654321');
+
+-- Inserting into PREV_RECEIPTS table
+INSERT INTO PREV_RECEIPTS (roll_no, check_in, check_out, receipt) VALUES (1, '2024-01-01', '2024-01-10', 1);
+-- Select all students
+SELECT * FROM STUDENT;
+
+-- Select all rooms
+SELECT * FROM ROOM;
+
+-- Select all payments
+SELECT * FROM PAYMENT;
+
+-- Select all guests for a particular student
+SELECT * FROM GUEST WHERE roll_no = 1;
+-- Fetch student details along with their room details
+SELECT s.*, r.*
+FROM STUDENT s
+JOIN ROOM r ON s.roll_no = r.roll_no;
+
+-- Fetch payment details along with student and room details
+SELECT p.*, s.*, r.*
+FROM PAYMENT p
+JOIN STUDENT s ON p.roll_no = s.roll_no
+JOIN ROOM r ON p.room_id = r.room_id;
+
+-- Fetch guest details along with their related student's details
+SELECT g.*, s.*
+FROM GUEST g
+JOIN STUDENT s ON g.roll_no = s.roll_no;
+-- Count the number of students
+SELECT COUNT(*) FROM STUDENT;
+
+-- Calculate the total amount due for all payments
+SELECT SUM(due) AS total_due FROM PAYMENT;
+
+-- Find the average age of students
+SELECT AVG(age) AS average_age FROM STUDENT;
+-- Find students who have made payments
+SELECT * FROM STUDENT WHERE roll_no IN (SELECT roll_no FROM PAYMENT);
+
+-- Find rooms that are currently occupied
+SELECT * FROM ROOM WHERE CURDATE() BETWEEN check_in AND check_out;
+-- List all rooms currently occupied along with student details
+SELECT s.roll_no, s.sname, s.email_id, r.room_id, r.check_in, r.check_out
+FROM STUDENT s
+JOIN ROOM r ON s.roll_no = r.roll_no
+WHERE CURDATE() BETWEEN r.check_in AND r.check_out;
+
+-- Fetch all students who have guests and their guest details
+SELECT s.roll_no, s.sname, g.gname, g.relation, g.no_of_ppl
+FROM STUDENT s
+JOIN GUEST g ON s.roll_no = g.roll_no;
+
+-- List all rooms with their payment details, showing only unpaid payments
+SELECT r.room_id, r.category_id, p.mode, p.due
+FROM ROOM r
+JOIN PAYMENT p ON r.room_id = p.room_id
+WHERE p.due > 0;
+
+-- List all students who have checked in within the last 7 days
+SELECT s.roll_no, s.sname, r.check_in
+FROM STUDENT s
+JOIN ROOM r ON s.roll_no = r.roll_no
+WHERE r.check_in >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
